@@ -24,7 +24,7 @@
   ],
   "require": {
     "cviebrock/eloquent-sluggable": "^8.0",
-    "orchid/platform": "^8.0|dev-master"
+    "orchid/platform": "^10.0|dev-master"
   },
   "require-dev": {
   },
