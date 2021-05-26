@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Layouts\Category;
 
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Select;
-use Orchid\Screen\Fields\TinyMCE;
 use Orchid\Screen\Layouts\Rows;
 
 class CategoryEditLayout extends Rows
@@ -45,7 +45,7 @@ class CategoryEditLayout extends Rows
                 })
                 ->title(__('Parent Category')),
 
-            TinyMCE::make($categoryContent.'.body')
+            Quill::make($categoryContent.'.body')
                 ->title(__('Description')),
 
         ];

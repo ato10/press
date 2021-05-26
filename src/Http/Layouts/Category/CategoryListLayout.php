@@ -30,16 +30,16 @@ class CategoryListLayout extends Table
     public function columns(): array
     {
         return [
-            TD::set('name', __('Name'))
+            TD::make('name', __('Name'))
                 ->render(function ($category) {
                     return '<a href="'.route('platform.systems.category.edit',
                             $category->id).'">'.$category->delimiter.' '.$category->term->GetContent('name').'</a>';
                 }),
-            TD::set('slug', __('Slug'))
+            TD::make('slug', __('Slug'))
                 ->render(function ($category) {
                     return $category->term->slug;
                 }),
-            TD::set('created_at', __('Created'))
+            TD::make('created_at', __('Created'))
                 ->render(function ($category) {
                     return $category->term->created_at;
                 }),

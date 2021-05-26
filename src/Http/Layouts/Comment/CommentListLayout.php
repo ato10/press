@@ -6,6 +6,8 @@ namespace Orchid\Press\Http\Layouts\Comment;
 
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
+use Illuminate\Support\Str;
+
 
 class CommentListLayout extends Table
 {
@@ -20,7 +22,7 @@ class CommentListLayout extends Table
     public function columns(): array
     {
         return [
-            TD::set('approved', __('Status'))
+            TD::make('approved', __('Status'))
                 ->render(function ($comment) {
                     if ($comment->approved) {
                         return '<i class="icon-check text-success mx-3"></i>';
@@ -29,13 +31,13 @@ class CommentListLayout extends Table
                     return '<i class="icon-close text-danger mx-3"></i>';
                 }),
 
-            TD::set('content', __('Content'))
+            TD::make('content', __('Content'))
                 ->render(function ($comment) {
                     return '<a href="'.route('platform.systems.comments.edit',
-                            $comment->id).'">'.\Str::limit($comment->content, 70).'</a>';
+                            $comment->id).'">'.Str::limit($comment->content, 70).'</a>';
                 }),
 
-            TD::set('post_id', __('Recording'))
+            TD::make('post_id', __('Recording'))
                 ->render(function ($comment) {
                     if (!is_null($comment->post)) {
                         return '<a href="'.route('platform.entities.type.edit', [
@@ -48,14 +50,14 @@ class CommentListLayout extends Table
                 })
                 ->align(TD::ALIGN_CENTER),
 
-            TD::set('user_id', __('User'))
+            TD::make('user_id', __('User'))
                 ->render(function ($comment) {
                     return '<a href="'.route('platform.systems.users.edit',
                             $comment->user_id).'"><i class="icon-user mx-3"></i></a>';
                 })
                 ->align(TD::ALIGN_CENTER),
 
-            TD::set('updated_at', __('Last edit'))
+            TD::make('updated_at', __('Last edit'))
                 ->render(function ($comment) {
                     return $comment->updated_at;
                 }),

@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Composers;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\ItemMenu;
-use Orchid\Platform\Menu;
 use Orchid\Press\Entities\Single;
+use Orchid\Screen\Actions\Menu;
 
 class PressMenuComposer
 {
@@ -40,17 +39,15 @@ class PressMenuComposer
                 $params = is_a($page, Single::class) ? [$page->slug, $page->slug] : [$page->slug];
                 $active = [route($route, $params), route($route, $params) . '/*'];
 
-                $this->dashboard->menu->add(Menu::MAIN,
-                    ItemMenu::label($page->name)
-                        ->slug($page->slug)
-                        ->icon($page->icon)
-                        ->title($page->title)
-                        ->route($route, $params)
-                        ->permission('platform.entities.type.'.$page->slug)
-                        ->sort($page->sort)
-                        ->canSee($page->display)
-                        ->active($active)
-                );
+                Menu::make($page->name)
+                    ->slug($page->slug)
+                    ->icon($page->icon)
+                    ->title($page->title)
+                    ->route($route, $params)
+                    ->permission('platform.entities.type.'.$page->slug)
+                    ->sort($page->sort)
+                    ->canSee($page->display)
+                    ->active($active);
             });
 
         return $this;

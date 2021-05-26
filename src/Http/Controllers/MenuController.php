@@ -27,7 +27,7 @@ class MenuController extends Controller
      */
     public function __construct()
     {
-        $this->checkPermission('platform.systems.menu');
+        //$this->checkPermission('platform.systems.menu');
     }
 
     /**
